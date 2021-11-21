@@ -7,7 +7,7 @@ const addProduct = (req, res) => {
     specifications: req.body.specifications,
     Notice: req.body.Notice,
     price: req.body.price,
-    image: req.file.path,
+    image: req.body.image
   });
   newProduct
     .save()
@@ -57,4 +57,4 @@ const addProduct = (req, res) => {
 //     });
 // };
 
-module.exports = { addProduct, addCart, removeCart, checkUser };
+module.exports = { addProduct };

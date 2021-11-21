@@ -12,6 +12,7 @@ const app = express();
 //instatiation routers
 // const productRouter = require("./routers/routes/product");
 const userRouter = require("./routers/routes/user");
+const productRouter=require("./routers/routes/product")
 //config enviroment varible
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(morgan("dev"));
 //routers middleware
 // app.use("/todos", todoRouter);
 app.use("/user", userRouter);
+app.use("/product",productRouter)
 
 //listen port
 const PORT = process.env.PORT || 5000;
