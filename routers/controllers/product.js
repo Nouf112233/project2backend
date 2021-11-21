@@ -1,7 +1,7 @@
 const productModel = require("./../../db/models/productSchema");
 
 const addProduct = (req, res) => {
-  const newProduct = new userModel({
+  const newProduct = new productModel({
     kind: req.body.kind,
     name: req.body.name,
     specifications: req.body.specifications,
