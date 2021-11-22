@@ -19,19 +19,32 @@ const addProduct = (req, res) => {
     });
 };
 
-// const allProduct = (req, res) => {
-//   const { email } = req.body;
-//   userModel
-//     .findOne({ email: email })
-//     .then((result) => {
-//       res.send(result);
-//       console.log("user exit");
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//       console.log("user not found");
-//     });
-// };
+const allProduct = (req, res) => {
+  productModel
+    .find({})
+    .then((result) => {
+      res.send(result);
+      console.log("get seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("no product");
+    });
+};
+
+const kindProduct = (req, res) => {
+  const {kind}=req.params;
+  productModel
+    .find({kind:kind})
+    .then((result) => {
+      res.send(result);
+      console.log("get seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+};
 
 // const addCart = (req, res) => {
 //   const { email, id } = req.body;
@@ -57,4 +70,4 @@ const addProduct = (req, res) => {
 //     });
 // };
 
-module.exports = { addProduct };
+module.exports = { addProduct,allProduct ,kindProduct};

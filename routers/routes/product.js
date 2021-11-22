@@ -30,12 +30,14 @@ const express = require("express");
 //     fileFilter:fileFilter});
 // uplood.single('image'),
 
-const { addProduct } = require("./../controllers/product");
+const { addProduct,allProduct ,kindProduct} = require("./../controllers/product");
 const productRouter = express.Router();
 
 productRouter.post("/",  addProduct);
 // userRouter.put("/", addCart);
 // userRouter.delete("/", removeCart);
-// userRouter.get("/", checkUser);
+productRouter.get("/", allProduct);
+productRouter.get("/kind",kindProduct);
+
 
 module.exports = productRouter;
