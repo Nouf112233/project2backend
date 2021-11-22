@@ -46,17 +46,95 @@ const kindProduct = (req, res) => {
     });
 };
 
-// const addCart = (req, res) => {
-//   const { email, id } = req.body;
-//   userModel
-//     .findOneAndUpdate({ email: email }, { $addToSet: { cart: id } })
+// const searchProduct = (req, res) => {
+//   const {name}=req.body;
+//   productModel
+//     .find({ $text: { $search: name } } )
+//     .exec()
 //     .then((result) => {
 //       res.send(result);
+//       console.log("search seccesful");
 //     })
 //     .catch((err) => {
+//       console.log("err",err);
 //       res.send(err);
 //     });
 // };
+
+const ProductId = (req, res) => {
+  const {id}=req.params;
+  productModel
+    .findById(id)
+    .then((result) => {
+      res.send(result);
+      console.log("search seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+};
+
+const productNew = (req, res) => {
+  const newe =req.body.newe;
+  const id =req.body.id;
+  productModel
+  .updateOne({_id:id},{$set:{newe:newe}})
+    .exec()
+    .then((result) => {
+      res.send(result);
+      console.log("new seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+};
+
+// const productNew = (req, res) => {
+//   const newe =req.body.newe;
+//   const id =req.body.id;
+//   productModel
+//   .updateOne({_id:id},{$set:{newe:newe}})
+//     .exec()
+//     .then((result) => {
+//       res.send(result);
+//       console.log("new seccesful");
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//       console.log("err");
+//     });
+// };
+
+const productDiscound = (req, res) => {
+  const discound =req.body.discound;
+  const id =req.body.id;
+  productModel
+  .updateOne({_id:id},{$set:{discound:discound}})
+    .exec()
+    .then((result) => {
+      res.send(result);
+      console.log("discound seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+};
+
+const addNotice = (req, res) => {
+  const { Notice } = req.body;
+  const id = req.body.id;
+  productModel
+    .findOneAndUpdate({ _id: id }, { $push: {Notice: Notice } })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
 // const removeCart = (req, res) => {
 //   const { email, id } = req.body;
@@ -70,4 +148,4 @@ const kindProduct = (req, res) => {
 //     });
 // };
 
-module.exports = { addProduct,allProduct ,kindProduct};
+module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice};

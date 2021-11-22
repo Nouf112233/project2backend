@@ -30,14 +30,18 @@ const express = require("express");
 //     fileFilter:fileFilter});
 // uplood.single('image'),
 
-const { addProduct,allProduct ,kindProduct} = require("./../controllers/product");
+const { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice} = require("./../controllers/product");
 const productRouter = express.Router();
 
 productRouter.post("/",  addProduct);
-// userRouter.put("/", addCart);
+productRouter.put("/", productNew);
+productRouter.put("/dis", productDiscound);
+productRouter.put("/not", addNotice);
 // userRouter.delete("/", removeCart);
 productRouter.get("/", allProduct);
-productRouter.get("/kind",kindProduct);
+productRouter.get("/kind/:kind",kindProduct);
+// productRouter.get("/search",searchProduct);
+productRouter.get("/id/:id",ProductId);
 
 
 module.exports = productRouter;
