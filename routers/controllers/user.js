@@ -37,7 +37,7 @@ const checkUser = (req, res) =>{
 const addCart = (req, res) =>{
     const {email ,id}=req.body;
     userModel
-      .findOneAndUpdate ({email:email},{$addToSet:{cart:id}})
+      .findOneAndUpdate ({email:email},{$addToSet:{cart:id}},{new:true})
       .then((result) => {
         res.send(result);
       })

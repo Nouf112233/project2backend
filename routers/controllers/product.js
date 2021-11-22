@@ -127,7 +127,7 @@ const addNotice = (req, res) => {
   const { Notice } = req.body;
   const id = req.body.id;
   productModel
-    .findOneAndUpdate({ _id: id }, { $push: {Notice: Notice } })
+    .findOneAndUpdate({ _id: id }, { $push: {Notice: Notice } },{new:true})
     .then((result) => {
       res.send(result);
     })
