@@ -20,24 +20,36 @@ const addNewUser = (req, res) => {
     });
 };
 
-const checkUser = (req, res) =>{
-    const {email}=req.body;
+// const checkUser = (req, res) =>{
+//     const {email}=req.body;
+//     userModel
+//       .findOne ({email:email})
+//       .then((result) => {
+//         res.send(result);
+//         console.log("user exit")
+//       })
+//       .catch((err) => {
+//         res.send(err);
+//         console.log("user not found")
+//       });
+//   };
+  const checkUser = (req, res) =>{
     userModel
-      .findOne ({email:email})
-      .then((result) => {
-        res.send(result);
-        console.log("user exit")
-      })
-      .catch((err) => {
-        res.send(err);
-        console.log("user not found")
-      });
+    .find({})
+    .then((result) => {
+      res.send(result);
+      console.log("get seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("no product");
+    });
   };
 
 const addCart = (req, res) =>{
     const {email ,id}=req.body;
     userModel
-      .findOneAndUpdate ({email:email},{$addToSet:{cart:id}},{new:true})
+      .findOneAndUpdate ({email:email},{$push:{cart:id}},{new:true})
       .then((result) => {
         res.send(result);
       })

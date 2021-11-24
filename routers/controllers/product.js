@@ -46,6 +46,32 @@ const kindProduct = (req, res) => {
     });
 };
 
+const getNewProduct = (req, res) => {
+  productModel
+    .find({newe:true})
+    .then((result) => {
+      res.send(result);
+      console.log("get seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+};
+
+const getSaleProduct = (req, res) => {
+  productModel
+    .find({discound:true})
+    .then((result) => {
+      res.send(result);
+      console.log("get seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+};
+
 // const searchProduct = (req, res) => {
 //   const {name}=req.body;
 //   productModel
@@ -148,4 +174,4 @@ const addNotice = (req, res) => {
 //     });
 // };
 
-module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice};
+module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct};
