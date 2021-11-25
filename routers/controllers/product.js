@@ -162,6 +162,21 @@ const addNotice = (req, res) => {
     });
 };
 
+const setLike =(req,res) =>{
+  const {id,rating}=req.body;
+  productModel
+  .updateOne({_id:id},{$set:{rating:rating}})
+    .exec()
+    .then((result) => {
+      res.send(result);
+      console.log("rating seccesful");
+    })
+    .catch((err) => {
+      res.send(err);
+      console.log("err");
+    });
+}
+
 // const removeCart = (req, res) => {
 //   const { email, id } = req.body;
 //   userModel
@@ -174,4 +189,4 @@ const addNotice = (req, res) => {
 //     });
 // };
 
-module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct};
+module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct,setLike};
