@@ -72,20 +72,17 @@ const getSaleProduct = (req, res) => {
     });
 };
 
-// const searchProduct = (req, res) => {
-//   const {name}=req.body;
-//   productModel
-//     .find({ $text: { $search: name } } )
-//     .exec()
-//     .then((result) => {
-//       res.send(result);
-//       console.log("search seccesful");
-//     })
-//     .catch((err) => {
-//       console.log("err",err);
-//       res.send(err);
-//     });
-// };
+const searchProduct = (req, res) => {
+  const {name}=req.body;
+  productModel
+    .find({$or:[{ kind:{$regex: new RegExp(name)}},{ name:{$regex: new RegExp(name)}}]},
+    {
+      _id:0,
+      _v:0
+    },function (err,data){
+      res.json(data);
+    })
+};
 
 const ProductId = (req, res) => {
   const {id}=req.params;
@@ -189,4 +186,4 @@ const setLike =(req,res) =>{
 //     });
 // };
 
-module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct,setLike};
+module.exports = { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct,setLike,searchProduct};

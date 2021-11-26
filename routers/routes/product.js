@@ -30,7 +30,7 @@ const express = require("express");
 //     fileFilter:fileFilter});
 // uplood.single('image'),
 
-const { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct,setLike} = require("./../controllers/product");
+const { addProduct,allProduct ,kindProduct,ProductId,productNew,productDiscound,addNotice,getNewProduct,getSaleProduct,setLike,searchProduct} = require("./../controllers/product");
 const productRouter = express.Router();
 
 productRouter.post("/",  addProduct);
@@ -44,6 +44,7 @@ productRouter.get("/kind/:kind",kindProduct);
 productRouter.get("/new",getNewProduct);
 productRouter.get("/sale",getSaleProduct);
 productRouter.get("/id/:id",ProductId);
+productRouter.get("/search",searchProduct);
 
 
 module.exports = productRouter;
