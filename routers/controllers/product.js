@@ -77,7 +77,6 @@ const searchProduct = (req, res) => {
   productModel
     .find({$or:[{ kind:{$regex: new RegExp(name)}},{ name:{$regex: new RegExp(name)}}]},
     {
-      _id:0,
       _v:0
     },function (err,data){
       res.json(data);
