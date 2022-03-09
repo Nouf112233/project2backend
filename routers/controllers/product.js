@@ -71,13 +71,13 @@ const getSaleProduct = (req, res) => {
       console.log("err");
     });
 };
+//start search function
 
 const searchProduct = (req, res) => {
   const {name}=req.body;
   productModel
     .find({$or:[{ kind:{$regex: new RegExp(name)}},{ name:{$regex: new RegExp(name)}}]},
     {
-      _id:0,
       _v:0
     },function (err,data){
       res.json(data);
